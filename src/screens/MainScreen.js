@@ -5,9 +5,9 @@ import { Post } from '../components/Post'
 
 
 export const MainScreen = (props) => {
-    const goToPost = () => {
+    const openPostHeandler = (post) => {
         
-      props.navigation.navigate('Post')
+      props.navigation.navigate('Post', {postId: post.id, date: post.date} )
 
     }
     return (
@@ -15,7 +15,7 @@ export const MainScreen = (props) => {
             <FlatList
                 data={DATA}
                 keyExtractor={post => post.id.toString()}
-                renderItem={({ item }) => <Post post={item} />}
+                renderItem={({ item }) => <Post post={item} onOpen={openPostHeandler}/>}
             />
 
         </View>
