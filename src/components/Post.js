@@ -9,10 +9,17 @@ export const Post = ({post, onOpen}) => {
                     style={styles.image}
                     source={{ uri: post.img }}
                 >
-                    <View style={styles.textWrap}>
-                        <Text style={styles.title}>
-                            {new Date(post.date).toLocaleDateString()}
-                        </Text>
+                    <View style={styles.direction}>
+                        <View style={styles.textWrap}>
+                            <Text style={styles.title}>
+                                {new Date(post.date).toLocaleDateString()}
+                            </Text>
+                        </View>
+                        <View style={styles.textWrap}>
+                            <Text style={styles.title}>
+                                {post.text}
+                            </Text>
+                        </View>
                     </View>
 
                 </ImageBackground>
@@ -42,5 +49,11 @@ const styles = StyleSheet.create({
         color: '#fff',
         fontFamily: 'open-regular'
 
+    },
+    direction: {
+        flex:1,
+        flexDirection: 'column',
+        justifyContent: 'space-between',
+        alignItems: 'flex-end',
     }
 })
