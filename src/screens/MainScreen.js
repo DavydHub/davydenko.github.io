@@ -1,9 +1,9 @@
 import React from "react";
-import { View, StyleSheet, Text, Button, FlatList } from "react-native";
+import { StyleSheet } from "react-native";
 import { HeaderButtons, Item } from "react-navigation-header-buttons";
 import { DATA } from "../data";
-import { Post } from "../components/Post";
 import { AppHeaderIcon } from "../components/AppHeaderIcon";
+import { PostList } from "../components/PostList";
 
 export const MainScreen = (props) => {
   const openPostHeandler = (post) => {
@@ -13,17 +13,7 @@ export const MainScreen = (props) => {
       booked: post.booked,
     });
   };
-  return (
-    <View style={styles.wrapper}>
-      <FlatList
-        data={DATA}
-        keyExtractor={(post) => post.id.toString()}
-        renderItem={({ item }) => (
-          <Post post={item} onOpen={openPostHeandler} />
-        )}
-      />
-    </View>
-  );
+  return <PostList data={DATA} onOpen={openPostHeandler} />;
 };
 MainScreen.navigationOptions = {
   headerTitle: "Мой блог",
@@ -46,14 +36,3 @@ MainScreen.navigationOptions = {
     </HeaderButtons>
   ),
 };
-
-const styles = StyleSheet.create({
-  center: {
-    flex: 1,
-    justifyContent: "center",
-    alignItems: "center",
-  },
-  wrapper: {
-    padding: 10,
-  },
-});
