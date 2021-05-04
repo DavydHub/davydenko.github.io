@@ -15,14 +15,14 @@ export const MainScreen = (props) => {
   };
   return <PostList data={DATA} onOpen={openPostHeandler} />;
 };
-MainScreen.navigationOptions = {
+MainScreen.navigationOptions = ({ navigation }) => ({
   headerTitle: "Мой блог",
   headerRight: () => (
     <HeaderButtons HeaderButtonComponent={AppHeaderIcon}>
       <Item
         title="Take photo"
         iconName="ios-camera"
-        onPress={() => console.log("Pressed photo")}
+        onPress={() => navigation.push("Create")}
       />
     </HeaderButtons>
   ),
@@ -31,8 +31,8 @@ MainScreen.navigationOptions = {
       <Item
         title="Toogle Drawer"
         iconName="ios-menu"
-        onPress={() => console.log("Pressed menu")}
+        onPress={() => navigation.toggleDrawer()}
       />
     </HeaderButtons>
   ),
-};
+});
