@@ -4,7 +4,6 @@ import { createStackNavigator } from "react-navigation-stack";
 import { createBottomTabNavigator } from "react-navigation-tabs";
 import { createMaterialBottomTabNavigator } from "react-navigation-material-bottom-tabs";
 import { createDrawerNavigator } from "react-navigation-drawer";
-
 import { Platform } from "react-native";
 import { Ionicons } from "@expo/vector-icons";
 import { MainScreen } from "../screens/MainScreen";
@@ -13,6 +12,13 @@ import { BookedScreen } from "../screens/BookedScreen";
 import { AboutScreen } from "../screens/AboutScreen";
 import { CreateScreen } from "../screens/CreateScreen";
 import { THEME } from "../theme";
+
+import { LogBox } from "react-native";
+
+LogBox.ignoreLogs([
+  "Your project is accessing the following APIs from a deprecated global rather than a module import: Constants (expo-constants).",
+  'The global "__expo" and "Expo" objects will be removed in SDK 41. Learn more about how to fix this warning: https://expo.fyi/deprecated-globals',
+]);
 
 const navigatorOptions = {
   defaultNavigationOptions: {
