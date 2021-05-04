@@ -1,9 +1,9 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { HeaderButtons, Item } from "react-navigation-header-buttons";
-import { DATA } from "../data";
-
+import { useSelector } from "react-redux";
 import { AppHeaderIcon } from "../components/AppHeaderIcon";
 import { PostList } from "../components/PostList";
+import { loadPosts } from "../store/actions/postActions";
 
 export const BookedScreen = (props) => {
   const openPostHeandler = (post) => {
@@ -13,8 +13,10 @@ export const BookedScreen = (props) => {
       booked: post.booked,
     });
   };
-  const dataBooked = DATA.filter((post) => post.booked);
-  return <PostList data={dataBooked} onOpen={openPostHeandler} />;
+
+  const bookedPosts = useSelector((state) => state.post.bookedPosts);
+
+  return <PostList data={bookedPosts} onOpen={openPostHeandler} />;
 };
 BookedScreen.navigationOptions = (props) => ({
   headerTitle: "Избранное",

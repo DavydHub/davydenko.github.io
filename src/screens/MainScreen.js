@@ -1,9 +1,9 @@
-import React from "react";
-import { StyleSheet } from "react-native";
+import React, { useEffect } from "react";
 import { HeaderButtons, Item } from "react-navigation-header-buttons";
-import { DATA } from "../data";
+import { useDispatch, useSelector } from "react-redux";
 import { AppHeaderIcon } from "../components/AppHeaderIcon";
 import { PostList } from "../components/PostList";
+import { loadPosts } from "../store/actions/postActions";
 
 export const MainScreen = (props) => {
   const openPostHeandler = (post) => {
@@ -13,7 +13,16 @@ export const MainScreen = (props) => {
       booked: post.booked,
     });
   };
-  return <PostList data={DATA} onOpen={openPostHeandler} />;
+
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(loadPosts());
+  }, [dispatch]);
+
+  const allPosts = useSelector((state) => state.post.allPosts);
+
+  return <PostList data={allPosts} onOpen={openPostHeandler} />;
 };
 MainScreen.navigationOptions = ({ navigation }) => ({
   headerTitle: "Мой блог",
