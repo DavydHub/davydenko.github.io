@@ -3,7 +3,6 @@ import { HeaderButtons, Item } from "react-navigation-header-buttons";
 import { useSelector } from "react-redux";
 import { AppHeaderIcon } from "../components/AppHeaderIcon";
 import { PostList } from "../components/PostList";
-import { loadPosts } from "../store/actions/postActions";
 
 export const BookedScreen = (props) => {
   const openPostHeandler = (post) => {
