@@ -12,7 +12,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { HeaderButtons, Item } from "react-navigation-header-buttons";
 import { AppHeaderIcon } from "../components/AppHeaderIcon";
 import { THEME } from "../theme";
-import { toggleBooked } from "../store/actions/postActions";
+import { removePost, toggleBooked } from "../store/actions/postActions";
 
 export const PostScreen = ({ navigation }) => {
   const dispatch = useDispatch();
@@ -51,7 +51,10 @@ export const PostScreen = ({ navigation }) => {
         {
           text: "Удалить",
           style: "destructive",
-          onPress: () => console.log("Pressed DEL"),
+          onPress: () => {
+            navigation.navigate("Main");
+            dispatch(removePost(postId));
+          },
         },
       ],
       {
@@ -59,6 +62,10 @@ export const PostScreen = ({ navigation }) => {
       }
     );
   };
+
+  if (!post) {
+    return null;
+  }
 
   return (
     <ScrollView>
