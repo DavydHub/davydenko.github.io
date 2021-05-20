@@ -32,8 +32,8 @@ export const PostScreen = ({ navigation }) => {
   }, [booked]);
 
   const toggleHeandler = useCallback(() => {
-    dispatch(toggleBooked(postId));
-  }, [dispatch, postId]);
+    dispatch(toggleBooked(post));
+  }, [dispatch, post]);
 
   useEffect(() => {
     navigation.setParams({ toggleHeandler });
