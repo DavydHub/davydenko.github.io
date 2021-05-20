@@ -1,7 +1,9 @@
 import React, { useEffect } from "react";
+import { View } from "react-native";
 import { HeaderButtons, Item } from "react-navigation-header-buttons";
 import { useDispatch, useSelector } from "react-redux";
 import { AppHeaderIcon } from "../components/AppHeaderIcon";
+import { Loader } from "../components/Loader";
 import { PostList } from "../components/PostList";
 import { loadPosts } from "../store/actions/postActions";
 
@@ -21,6 +23,12 @@ export const MainScreen = (props) => {
   }, [dispatch]);
 
   const allPosts = useSelector((state) => state.post.allPosts);
+  const loading = useSelector((state) => state.post.loading);
+
+  if (loading) {
+    console.log("loading");
+    return <Loader />;
+  }
 
   return <PostList data={allPosts} onOpen={openPostHeandler} />;
 };
